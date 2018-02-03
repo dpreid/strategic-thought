@@ -1,0 +1,116 @@
+/*side menu content*/
+.sidemenu{
+    height: 100%;
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #5f5f5f; /* Grey*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.3s; /* 0.5 second transition effect to slide in the sidenav */
+}
+/* The navigation menu links */
+.sidemenu a{
+  padding: 8px 8px 8px 32px;
+   text-decoration: none;
+   font-size: 25px;
+   color: #f1f1f1;
+   display: block;
+   transition: 0.3s;
+}
+/* When you mouse over the navigation links, change their color */
+.sidemenu a:hover {
+    color: #000;
+}
+
+/* Position and style the close button (top right corner) */
+.sidemenu .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#topmenubar .openbtn{
+  position: fixed;
+  top: 0;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.button{
+  cursor:pointer;
+}
+
+/* Style page content */
+#mainpage {
+    margin-left: 0px; /* Same as the width of the sidebar */
+    padding: 0px 10px;
+}
+
+#pageheader{
+  background-color: #52b9e5;
+  height: 80px;
+  background: url(images/m2_header.jpg);
+  border-radius: 20px;
+
+}
+
+.pagetitle{
+  padding-top: 54px;
+  color: #000;
+  text-align: center;
+  font-size: 36px;
+  float:inherit;
+}
+
+#topmenubar{
+  width: 100%;
+  height:44px;
+  position: fixed;
+  top: 0px;
+  background-color: #5f5f5f;
+  color: #f1f1f1;
+}
+
+#topmenubar a{
+  padding: 10px 15px 9px 15px !important
+}
+
+#topmenubar a:hover{
+  background-color: #000;
+}
+
+#topmenubar .topbarbutton{
+  color: inherit;
+  height: 24px;
+  background-color: inherit;
+  text-decoration: none;
+  vertical-align: middle;
+  overflow:hidden;
+  float: left;
+
+}
+
+h1{
+  font-family: "Segoe UI",Arial,sans-serif;
+  font-weight: 400;
+  margin: 10px 0;
+  display: block;
+}
+
+h2{
+  font-family: "Segoe UI",Arial,sans-serif;
+  font-weight: 400;
+  margin: 10px 0;
+  display: block;
+  font-size: 28px;
+}
+
+.pagetext{
+  font-family: "Segoe UI",Arial,sans-serif;
+  font-size: 12px;
+}
