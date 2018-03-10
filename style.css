@@ -47,7 +47,7 @@
 
 /* Style page content */
 #mainpage {
-    margin-left: 0px; /* Same as the width of the sidebar */
+    margin-left: 20px; /* Same as the width of the sidebar */
     padding: 0px 10px;
     font-family: "Segoe UI",Arial,sans-serif;
     font-size: 14px;
