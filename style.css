@@ -181,7 +181,7 @@ pre, code {
 }
 pre {
   overflow: auto;
-  height: 500px;
+  height: 200px;
 }
 pre > code {
   display: block;
