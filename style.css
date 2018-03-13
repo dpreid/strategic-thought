@@ -84,7 +84,7 @@
 }
 
 
-
+/*Top menu bar with main page links*/
 #topmenubar a:hover{
   background-color: #000;
 }
@@ -110,14 +110,14 @@
 }
 
 
-
+/*Main page title    */
 h1{
   font-family: "Segoe UI",Arial,sans-serif;
   font-weight: 400;
   margin: 10px 0;
   display: block;
 }
-
+/*Secondary page titles for separate articles/sections    */
 h2{
   font-family: "Segoe UI",Arial,sans-serif;
   font-weight: 400;
@@ -131,4 +131,64 @@ h3{
   font-size:inherit;
   font-style: italic;
   font-weight:bold;
+}
+/*Hyperlink fonts  */
+a:link{
+  color: black;
+  text-decoration: none;
+}
+
+a:hover{
+  color: green;
+  text-decoration: none;
+}
+
+a:visited{
+  color:black;
+  text-decoration: none;
+}
+/*image and figure formatting */
+img {
+  padding-top: 30px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+
+figure{
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  display: block;
+}
+/* embedded video */
+iframe{
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  display: block;
+}
+/* Displaying code in page */
+pre, code {
+  font-family: monospace, monospace;
+  overflow: auto;
+}
+pre {
+  overflow: auto;
+  height: 500px;
+}
+pre > code {
+  display: block;
+  padding: 1rem;
+  word-wrap: normal;
+}
+
+#codeframe{
+  margin-left:inherit;
 }

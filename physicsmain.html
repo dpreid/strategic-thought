@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <script src="scripts.js"></script>
+  </head>
+
+  <body>
+    <!--TOP MENU BAR with separate page links-->
+    <div class="mainpage">
+    <div id="topmenubar">
+        <a href="javascript:void(0)" class="topbarbutton" onclick="openNav()">MENU</a>
+        <a href="index.html" class="topbarbutton">HOME</a>
+        <a href="boardgamesmain.html" class="topbarbutton">GAMES</a>
+        <a href="codingmain.html" class="topbarbuttonselected">CODING</a>
+        <a href="physicsmain.html" class="topbarbutton">PHYSICS</a>
+        <a href="astronomymain.html" class="topbarbutton">ASTRONOMY</a>
+    </div>
+
+    <!-- Page header with title of page-->
+    <div id="pagehead" class="pagetitle">
+      <h1> Physics</h1>
+    </div>
+
+
+    </div>
+    <!-- Side bar for page navigation-->
+    <div id="mysidemenu" class="sidemenu">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="index.html">HOME</a>
+
+
+
+    </div>
+
+<!-- Main page content -->
+<div id="mainpage">
+  <h2> Resonant Orbits in Python </h2>
+
+<p>
+  Gravitational resonance can be set up between bodies in the solar system when the ratio of the period of their orbits has
+  a (relatively) simple integer (or close to) ratio. The Earth and Venus have a (very close to) 8:13 orbit ratio: for every
+  8 orbits of the Earth, Venus orbits 13 times. This means that every 8 years the two planets reach the same relative position.
+  A number of these rensonances exist in the solar system between planets and planets with their natural satellites. Most are between two
+  bodies, but Jupiter has a resonance with 3 of its inner moons. The Wikipedia page on <a href="https://en.wikipedia.org/wiki/Orbital_resonance">
+    Orbital Resonance</a> has a good overview of solar system resonances.
+</p>
+<p>
+  The video below is an animation programmed in Python, using pygame, to show the Earth - Venus 8:13 resonance. The Python code is available below
+  and will allow you to play with the speed, distances and connecting lines to potentially find other resonances. Changing the orbital periods
+  and distances from the Sun will allow you to model different planetary/moon interactions.
+</p>
+<!-- Embedded video from youtube -->
+  <p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/OwdjxURRX_U" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </p>
+  <!-- Python code for the resonant orbits video above-->
+  <figure id="codeframe">
+  <pre>
+  <code>
+#Resonant orbits
+
+import pygame, random, time, math, numpy
+from pygame.locals import *
+
+#call 1 AU 100 units in this simulation
+
+#_____GLOBAL VARIABLES____
+num_revs = 8
+scale = 2
+T_e = 365.25
+T_v = 224.77
+dist_e = 100*scale
+dist_v = 72*scale
+
+speed = 100
+w_e = 2*math.pi/T_e
+w_v = 2*math.pi/T_v
+w_e_norm = speed
+w_v_norm = speed*w_v/w_e
+
+
+dt=0.01
+t_line = 0.1
+dt_line = 0.1
+#____FUNCTIONS_____
+
+
+
+#______initialisations_______
+
+pygame.init()
+
+#set width and height of screen
+
+size = [600, 600]
+screen = pygame.display.set_mode(size)
+
+#Window title
+
+pygame.display.set_caption("Resonant orbits")
+
+# colours
+
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
+YELLOW = (255,255,0)
+WHITE = (255,255,255)
+BLACK = (0,0,0)
+
+colour_list = [RED, GREEN, BLUE, YELLOW]
+
+
+# create star objects
+#earth = pygame.Surface((50,50))
+#venus = pygame.Surface((50,50))
+earthRect = pygame.draw.circle(screen,BLUE,(int(size[0]/2),int(size[1]/2)+dist_e),10,0)
+venusRect = pygame.draw.circle(screen,GREEN,(int(size[0]/2),int(size[1]/2)+dist_v),10,0)
+pygame.display.update()
+
+
+# create planet vectors
+v_earth = pygame.math.Vector2(0,dist_e)
+v_venus = pygame.math.Vector2(0,dist_v)
+
+lines_e = []
+lines_v = []
+
+#_____MAIN RUN PROGRAM_______
+
+done = 0
+t = 0
+clock = pygame.time.Clock()
+total_angle = 0
+while done == 0:
+    screen.fill((0,0,0))
+
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            done = 1
+
+    e_angle = w_e_norm*dt
+    v_angle = w_v_norm*dt
+
+    total_angle += e_angle
+
+    v_earth.rotate_ip(e_angle)
+    v_venus.rotate_ip(v_angle)
+
+    e_polar = v_earth.as_polar()
+    v_polar = v_venus.as_polar()
+    x_e = size[0]/2 + e_polar[0]*math.cos(e_polar[1]*math.pi/180)
+    y_e = size[1]/2 + e_polar[0]*math.sin(e_polar[1]*math.pi/180)
+    x_v = size[0]/2 + v_polar[0]*math.cos(v_polar[1]*math.pi/180)
+    y_v = size[1]/2 + v_polar[0]*math.sin(v_polar[1]*math.pi/180)
+
+    earthRect.centerx = x_e
+    earthRect.centery = y_e
+    venusRect.centerx = x_v
+    venusRect.centery = y_v
+
+    connectLine = pygame.draw.line(screen, RED,(x_e,y_e),(x_v,y_v),1)
+    if(t/t_line > 1):
+        lines_e.append([x_e,y_e])
+        lines_v.append([x_v,y_v])
+        t_line += dt_line
+    earthRect = pygame.draw.circle(screen,BLUE,(int(x_e),int(y_e)),10,0)
+    venusRect = pygame.draw.circle(screen,GREEN,(int(x_v),int(y_v)),10,0)
+    for i in range(0,len(lines_e)):
+        pygame.draw.line(screen,WHITE,lines_e[i],lines_v[i],1)
+
+    pygame.display.update()
+
+    clock.tick(100)
+    ##pygame.display.flip()
+    t += dt
+    if (total_angle > (num_revs*360)):
+        done=1
+
+pygame.quit()
+
+  </code>
+</pre>
+</figure>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+  </body>
+</html>
