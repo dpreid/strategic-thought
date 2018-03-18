@@ -181,7 +181,7 @@ pre, code {
 }
 pre {
   overflow: auto;
-  height: 200px;
+  height: 300px;
 }
 pre > code {
   display: block;
@@ -191,4 +191,8 @@ pre > code {
 
 #codeframe{
   margin-left:inherit;
+}
+
+#codeframeRight{
+  margin-left: 50%
 }

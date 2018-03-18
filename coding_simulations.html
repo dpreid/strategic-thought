@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blank page</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <script src="scripts.js"></script>
+  </head>
+
+  <body>
+    <!--TOP MENU BAR with separate page links-->
+    <div class="mainpage">
+    <div id="topmenubar">
+        <a href="javascript:void(0)" class="topbarbutton" onclick="openNav()">MENU</a>
+        <a href="index.html" class="topbarbutton">HOME</a>
+        <a href="boardgamesmain.html" class="topbarbutton">GAMES</a>
+        <a href="codingmain.html" class="topbarbuttonselected">CODING</a>
+        <a href="physicsmain.html" class="topbarbutton">PHYSICS</a>
+        <a href="astronomymain.html" class="topbarbutton">ASTRONOMY</a>
+    </div>
+
+    <!-- Page header with title of page-->
+    <div id="pagehead" class="pagetitle">
+      <h1> Simulations</h1>
+    </div>
+
+
+    </div>
+    <!-- Side bar for page navigation-->
+    <div id="mysidemenu" class="sidemenu">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="index.html">HOME</a>
+
+
+
+    </div>
+
+
+    <!-- Main page content -->
+    <div id="mainpage">
+        <h2> Conway's Game of Life</h2>
+        <p>
+          The Game of Life is a cellular automaton which simulates the evolution of a simple
+          "lifeform" by applying basic rules for survival and death. The evolution of the life is entirely
+          defined by the initial state of the system.
+        </p>
+
+        <figure id="codeframe">
+        <pre>
+        <code>
+          import pygame
+from pygame.locals import *
+import random
+from pentomino import pentomino as p
+from hexomino import hexomino as h
+#============================================================================
+# set the speed that the simulation runs
+speed = 5
+#positions that start living - hexomino shapes are in the imported hexomino file
+starting_point1 = h.hb1
+starting_point2 = h.hb2
+starting_point3 = h.hb3
+starting_point4 = h.hb4
+starting_point5 = h.hb5
+starting_point6 = h.hb6
+#============================================================================
+def main():
+    pygame.init()
+
+    #set width and height of life board and tiles
+
+    size = [500, 500]
+    screen = pygame.display.set_mode(size)
+
+    num_tiles_row = 100
+    tile_size = [size[0]/num_tiles_row, size[1]/num_tiles_row]
+
+
+    # initialise filled array
+    array = []
+    for x in range(0, num_tiles_row):
+        row = []
+        for y in range(0, num_tiles_row):
+            row.append(0)
+        array.append(row)
+
+    # INITIALISE STARTING LIVING CELLS
+    array[starting_point1[0]][starting_point1[1]] = 1
+    array[starting_point2[0]][starting_point2[1]] = 1
+    array[starting_point3[0]][starting_point3[1]] = 1
+    array[starting_point4[0]][starting_point4[1]] = 1
+    array[starting_point5[0]][starting_point5[1]] = 1
+    array[starting_point6[0]][starting_point6[1]] = 1
+
+    # create white tiles to represent each ALIVE cell
+    tile_surf_array = []
+    tile_rect_array = []
+  for row in range(num_tiles_row):
+        tile_surf_row = []
+        tile_rect_row = []
+        tile_top = row*tile_size[1]
+        for tile in range(num_tiles_row):
+            tile_surf = pygame.Surface((tile_size[0], tile_size[1]))
+            tile_surf.fill((250,250,250))
+            tilerect = tile_surf.get_rect()
+            tilerect.left = tile*tile_size[0]
+            tilerect.top = tile_top
+            tile_surf_row.append(tile_surf)
+            tile_rect_row.append(tilerect)
+
+        tile_surf_array.append(tile_surf_row)
+        tile_rect_array.append(tile_rect_row)
+
+    # set window title
+
+    pygame.display.set_caption("The Game of Life")
+
+    # main loop
+
+    done = 0
+    t = 0
+    clock = pygame.time.Clock()
+
+    while done == 0 and t < 1000:
+        screen.fill((0,0,0))
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                done = 1
+
+        # update graphics
+
+        for i in range(len(array)):
+            for j in range(len(array[0])):
+                if array[i][j] == 1:
+                    screen.blit(tile_surf_array[i][j], tile_rect_array[i][j])
+
+
+        # GAME RULES: update cell array
+        new_array = []
+        for x in range(0, num_tiles_row):
+            row = []
+            for y in range(0, num_tiles_row):
+                row.append(0)
+            new_array.append(row)
+
+        for i in range(0, len(array)):
+            for j in range(0, len(array[0])):
+                count = 0
+                if array[i-1][j] == 1:
+                    count+=1
+                if array[i-1][j-1] == 1:
+                    count+=1
+                if j != num_tiles_row - 1:
+                    if array[i-1][j+1] == 1:
+                        count+=1
+                if i != num_tiles_row - 1:
+                    if array[i+1][j] == 1:
+                        count+=1
+                    if array[i+1][j-1] == 1:
+                        count+=1
+                    if j != num_tiles_row - 1:
+                        if array[i+1][j+1] == 1:
+                            count+=1
+                if array[i][j-1] == 1:
+                    count+=1
+                if j != num_tiles_row - 1:
+                    if array[i][j+1] == 1:
+                        count+=1
+
+              if (count == 1 or count == 0) and array[i][j] == 1:   #cell dies by under pop
+                    new_array[i][j] = 0
+                if (count == 3 or count == 2) and array[i][j] == 1:   #cell survival
+                    new_array[i][j] = 1
+                elif (count == 8 or count == 7 or count == 6 or count == 5 or count == 4) and array[i][j] == 1: #death by overcrowding
+                    new_array[i][j] = 0
+                elif (count == 3) and array[i][j] == 0:   # reproductive birth
+                    new_array[i][j] = 1
+                else:
+                    new_array[i][j] = array[i][j]
+
+        for x in range(num_tiles_row):
+            for y in range(num_tiles_row):
+                array[x][y] = new_array[x][y]
+
+        clock.tick(speed)
+        pygame.display.flip()
+        t+=1
+    pygame.quit()
+
+
+main()
+
+        </code>
+      </pre>
+    </figure>
+    </div>
+
+    <div id="codeframeRight">
+      <figure id="codeframe">
+      <pre>
+      <code>
+        class hexomino(object):
+        # each hexomino starting positions are given below
+
+            ha1 = [50,50]       #11D
+            ha2 = [51, 50]
+            ha3 = [52, 50]
+            ha4 = [53, 50]
+            ha5 = [54, 50]
+            ha6 = [55, 50]
+
+            hb1 = [51,51]       #39(?)(2P)
+            hb2 = [51, 50]
+            hb3 = [52, 50]
+            hb4 = [53, 50]
+            hb5 = [54, 50]
+            hb6 = [55, 50]
+
+            hc1 = [52,51]       #4S
+            hc2 = [51, 50]
+            hc3 = [52, 50]
+            hc4 = [53, 50]
+            hc5 = [54, 50]
+            hc6 = [55, 50]
+
+            hd1 = [53,51]       #8(2P)
+            hd2 = [51, 50]
+            hd3 = [52, 50]
+            hd4 = [53, 50]
+            hd5 = [54, 50]
+            hd6 = [55, 50]
+
+            he1 = [51,51]       #3D
+            he2 = [52, 51]
+            he3 = [52, 50]
+            he4 = [53, 50]
+            he5 = [54, 50]
+            he6 = [55, 50]
+
+            hf1 = [53,51]       #2S
+            hf2 = [52, 51]
+            hf3 = [52, 50]
+            hf4 = [53, 50]
+            hf5 = [54, 50]
+            hf6 = [55, 50]
+
+            hg1 = [54,51]       #4S
+            hg2 = [52, 51]
+            hg3 = [52, 50]
+            hg4 = [53, 50]
+            hg5 = [54, 50]
+            hg6 = [55, 50]
+
+            hh1 = [55,51]       #14D
+            hh2 = [52, 51]
+            hh3 = [52, 50]
+            hh4 = [53, 50]
+            hh5 = [54, 50]
+            hh6 = [55, 50]
+
+            hi1 = [54,51]       #3S
+            hi2 = [53, 51]
+            hi3 = [52, 50]
+            hi4 = [53, 50]
+            hi5 = [54, 50]
+            hi6 = [55, 50]
+
+            hj1 = [52,51]       #4S
+            hj2 = [52, 52]
+            hj3 = [52, 50]
+            hj4 = [53, 50]
+            hj5 = [54, 50]
+            hj6 = [55, 50]
+
+            hk1 = [53,51]       #4D
+            hk2 = [53, 52]
+            hk3 = [52, 50]
+            hk4 = [53, 50]
+            hk5 = [54, 50]
+            hk6 = [55, 50]
+
+            hl1 = [52,49]       #176(2P)
+            hl2 = [52, 51]
+            hl3 = [52, 50]
+            hl4 = [53, 50]
+            hl5 = [54, 50]
+            hl6 = [55, 50]
+
+            hm1 = [53,49]       #6D
+            hm2 = [52, 51]
+            hm3 = [52, 50]
+            hm4 = [53, 50]
+            hm5 = [54, 50]
+            hm6 = [55, 50]
+
+            hn1 = [54,49]       #4D
+            hn2 = [52, 51]
+            hn3 = [52, 50]
+            hn4 = [53, 50]
+            hn5 = [54, 50]
+            hn6 = [55, 50]
+
+            ho1 = [55,49]       #44D
+            ho2 = [52, 51]
+            ho3 = [52, 50]
+            ho4 = [53, 50]
+            ho5 = [54, 50]
+            ho6 = [55, 50]
+
+            hp1 = [54,49]       #1S
+            hp2 = [53, 51]
+            hp3 = [52, 50]
+            hp4 = [53, 50]
+            hp5 = [54, 50]
+            hp6 = [55, 50]
+
+            hq1 = [53,49]       #4D
+            hq2 = [53, 51]
+            hq3 = [52, 50]
+            hq4 = [53, 50]
+            hq5 = [54, 50]
+            hq6 = [55, 50]
+
+            hr1 = [53,49]       #66S/ in HighLife(6 cells is also birth) has long life
+            hr2 = [53, 51]
+            hr3 = [52, 50]
+            hr4 = [53, 50]
+            hr5 = [54, 49]
+            hr6 = [55, 49]
+
+            hs1 = [53,49]       #4S
+            hs2 = [55, 50]
+            hs3 = [52, 50]
+            hs4 = [53, 50]
+            hs5 = [54, 49]
+            hs6 = [55, 49]
+
+            ht1 = [53,49]       #63S
+            ht2 = [51, 50]
+            ht3 = [52, 50]
+            ht4 = [53, 50]
+            ht5 = [54, 49]
+            ht6 = [55, 49]
+
+            hu1 = [53,49]       #(2P)
+            hu2 = [54, 50]
+            hu3 = [52, 50]
+            hu4 = [53, 50]
+            hu5 = [54, 49]
+            hu6 = [55, 49]
+
+            hv1 = [53,49]       #1S
+            hv2 = [54, 50]
+            hv3 = [55, 50]
+            hv4 = [53, 50]
+            hv5 = [54, 49]
+            hv6 = [55, 49]
+
+            hw1 = [53,49]       #2D
+            hw2 = [54, 50]
+            hw3 = [55, 50]
+            hw4 = [53, 50]
+            hw5 = [53, 51]
+            hw6 = [52, 51]
+
+            hx1 = [53,49]       #3D
+            hx2 = [54, 50]
+            hx3 = [55, 50]
+            hx4 = [53, 50]
+            hx5 = [53, 51]
+            hx6 = [54, 51]
+
+            hy1 = [54,49]       #102(2P)
+            hy2 = [54, 50]
+            hy3 = [55, 50]
+            hy4 = [53, 50]
+            hy5 = [53, 51]
+            hy6 = [52, 51]
+
+            hz1 = [53,52]       #5D
+            hz2 = [54, 50]
+            hz3 = [55, 50]
+            hz4 = [53, 50]
+            hz5 = [53, 51]
+            hz6 = [52, 52]
+
+            haa1 = [52,51]       #66S
+            haa2 = [54, 50]
+            haa3 = [55, 50]
+            haa4 = [53, 50]
+            haa5 = [53, 51]
+            haa6 = [52, 52]
+
+            hab1 = [53,52]       #gliders
+            hab2 = [54, 50]
+            hab3 = [55, 50]
+            hab4 = [53, 50]
+            hab5 = [53, 51]
+            hab6 = [54, 52]
+
+            hac1 = [53,52]       #8D
+            hac2 = [54, 50]
+            hac3 = [52, 50]
+            hac4 = [53, 50]
+            hac5 = [53, 51]
+            hac6 = [54, 52]
+
+            had1 = [53,52]       #176(2P) + 5?  Pretty cool in highlife
+            had2 = [54, 50]
+            had3 = [52, 51]
+            had4 = [53, 50]
+            had5 = [53, 51]
+            had6 = [54, 52]
+
+            hae1 = [54,49]       #5D
+            hae2 = [52, 51]
+            hae3 = [52, 50]
+            hae4 = [53, 50]
+            hae5 = [54, 50]
+            hae6 = [55, 49]
+
+            haf1 = [53,49]       #1S
+            haf2 = [54, 50]
+            haf3 = [55, 50]
+            haf4 = [55, 51]
+            haf5 = [54, 49]
+            haf6 = [55, 49]
+
+            hag1 = [53,50]       #3S
+            hag2 = [54, 50]
+            hag3 = [55, 50]
+            hag4 = [54, 51]
+            hag5 = [54, 49]
+            hag6 = [55, 49]
+
+            hah1 = [53,51]       #3D
+            hah2 = [54, 50]
+            hah3 = [55, 50]
+            hah4 = [54, 51]
+            hah5 = [54, 49]
+            hah6 = [55, 49]
+
+            hai1 = [53,51]       #62S
+            hai2 = [54, 50]
+            hai3 = [53, 50]
+            hai4 = [52, 51]
+            hai5 = [54, 49]
+            hai6 = [55, 49]
+
+      </code>
+    </pre>
+  </figure>
+    </div>
+
+
+
+  </body>
+</html>
