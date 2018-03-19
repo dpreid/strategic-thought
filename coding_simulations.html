@@ -31,6 +31,7 @@
     <div id="mysidemenu" class="sidemenu">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="index.html">HOME</a>
+        <a href = "#gameoflife"> Game&nbsp;of&nbsp;Life </a>
 
 
 
@@ -39,20 +40,42 @@
 
     <!-- Main page content -->
     <div id="mainpage">
-        <h2> Conway's Game of Life</h2>
+        <h2 id="gameoflife"> Conway's Game of Life</h2>
         <p>
           The Game of Life is a cellular automaton which simulates the evolution of a simple
           "lifeform" by applying basic rules for survival and death. The evolution of the life is entirely
-          defined by the initial state of the system.
+          defined by the initial state of the system. Whether a cell survives to the next step
+           depends on the state of the 8 cells surrounding it. Below is Python code for a version of the game of life
+          with the following rules:
+          <ul>
+            <li> The cell survives if 2 or 3 neighbours are in existence.
+              <li> The cell dies from underpopulation if only 1 or no neighbours exist.
+                <li> The cell dies from overpopulation if more than 4 neighbours exist.
+                  <li> If exactly 3 neighbours exist then a cell comes to life!
+          </ul>
+          The code below also includes references to the starting cells which (in this case) are hexomino tiles. The initial
+          conditions could be adapted to be anything. The rules could also be changed to find interesting patterns. The search for
+          certain structures within the Game of Life is still an active interest of many people and the Wikipedia page on the <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Game of Life</a>
+          highlights many of the recent discoveries.
+        </p>
+        <p>
+          Running the code below requires installion of pygame via pip. The instructions can be found at the <a href="https://www.pygame.org/wiki/GettingStarted">pygame website</a>.
         </p>
 
+        <div>
+          <figure id="thumbnail">
+            <img src="images/coding/gameoflife.PNG" alt="gameoflife">
+            <figcaption> 3 states of an evolving system </figcaption>
+        </figure>
+        </div>
+<div>
         <figure id="codeframe">
         <pre>
         <code>
           import pygame
 from pygame.locals import *
 import random
-from pentomino import pentomino as p
+#from pentomino import pentomino as p
 from hexomino import hexomino as h
 #============================================================================
 # set the speed that the simulation runs
@@ -196,8 +219,8 @@ main()
     </figure>
     </div>
 
-    <div id="codeframeRight">
-      <figure id="codeframe">
+    <div>
+      <figure id="codeframeRight">
       <pre>
       <code>
         class hexomino(object):
