@@ -31,6 +31,8 @@
     <div id="mysidemenu" class="sidemenu">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="index.html">HOME</a>
+        <a href="#eclipse">Solar&nbsp;Eclipse</a>
+        <a href="#DLA">3D&nbsp;DLA</a>
 
 
 
@@ -39,15 +41,40 @@
 
     <!-- Main page content -->
     <div id="mainpage">
-        <h2> Diffusion Limited Aggregation simulation </h2>
+<!-- Solar eclipse simulation -->
+<div>
+  <h2 id="eclipse"> Solar Eclipse simulation </h2>
+  <p>
+    Another fairly basic simulation, this time of solar eclipses. This is in no way an accurate simulation of the
+    frequency at which eclipses will occur as the orbital motion of the Earth and Moon are not simulated accurately. Relative
+    sizes of Sun, Earth and Moon are accurate, as are mean relative distances. The Moon's inclination to the ecliptic is necessarily
+    included to demonstrate why solar eclipses do not occur each time the Moon moves between the Earth and Sun. The Milky Way
+    skybox was created by Adam Bielecki.
+  </p>
+
+  <p>
+    The slider sets the relative speed of the simulation: we don't want to have to wait literal years to simulate an eclipse. The bottom
+    left camera shows the phase of the Moon. The cameras on the right show the Sun from positions in the Southern hemisphere (bottom), along the
+    ecliptic plane (centre) and from the Northern hemisphere (top). This is to give an idea of why any single solar eclipse is only full from a relatively
+    small area of the Earth.
+  </p>
+<iframe src="https://c.simmer.io/static/unityFrame/index.html?url=https%3A%2F%2Fsimmercdn.com%2Funity%2F8t8LP4p6WIg2UwQOjPnDftBDJcI3%2Fcontent%2Fa7c49107-fc61-007f-f79b-3bee525bc3d7&imagePath=screens/0.png" style="width:960px;height:600px;border:0"></iframe>
+</div>
+
+
+      <!-- Diffusion limited aggregation 3D simulation in Unity. -->
+      <div>
+        <h2 id="DLA"> Diffusion Limited Aggregation simulation </h2>
         <p>
-            I wanted to test out Unity as a possibel resource in creating educational simulations for teaching physics.
+            I wanted to test out Unity as a possible resource in creating educational simulations for teaching physics.
             As a first test of its potential, I simulated Diffusion Limited Aggregation in 3D. In later iterations I may add
             calculations of the fractal dimension of the growth formed, but for now the interactivity is limited to changing
             the attractive potential of the central "seed".
         </p>
 
         <iframe src="https://c.simmer.io/static/unityFrame/index.html?url=https%3A%2F%2Fsimmercdn.com%2Funity%2F8t8LP4p6WIg2UwQOjPnDftBDJcI3%2Fcontent%2Fc6969827-3b4b-0236-e64e-52e0c0ad058d&imagePath=screens/0.png" style="width:960px;height:600px;border:0"></iframe>
+      </div>
+
 
     </div>
 

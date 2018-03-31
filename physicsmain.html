@@ -31,6 +31,8 @@
     <div id="mysidemenu" class="sidemenu">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="index.html">HOME</a>
+        <a href="#nbody"> Nbody&nbsp;code</a>
+        <a href="#resonantOrbits"> Resonant&nbsp;Orbits</a>
 
 
 
@@ -38,7 +40,7 @@
 
 <!-- Main page content -->
 <div id="mainpage">
-  <h2> N body simulator </h2>
+  <h2 id="nbody"> N body simulator </h2>
   <p>
     <a href="http://www.artcompsci.org/">The Art of Computational Science </a> website contains a course on developing your own N-body simulator. The code is
     mainly written in Ruby (with earlier versions of sections in C++). It is a detailed look at the physics and maths associated with
@@ -49,7 +51,9 @@
     of the N-body code.
 </p>
 <p>
-  Below is an animation of the output of the N-body simulator for an initial spherical volume of particles and for a tidally distrupted dwarf galaxy.
+  Below is an animation of the output of the N-body simulator for a cluster of particles which are tidally disrupted by a large (unseen) mass
+  at the origin. Data output frequency from the N-body code was low so it isn't the smoothest/best looking animation, but that can be sorted by using a higher
+  frequency data output and playing with the plotting style.
 </p>
 <div>
   <iframe width="560" height="315" src="https://www.youtube.com/embed/aq-TtsIV8Qc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -65,7 +69,7 @@
 
 
 <div id="mainpage">
-  <h2> Resonant Orbits in Python </h2>
+  <h2 id="resonantOrbits"> Resonant Orbits in Python </h2>
 
 <p>
   Gravitational resonance can be set up between bodies in the solar system when the ratio of the period of their orbits has
