@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blank page</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <script src="scripts.js"></script>
+  </head>
+
+  <body>
+    <!--TOP MENU BAR with separate page links-->
+    <div class="mainpage">
+    <div id="topmenubar">
+        <a href="javascript:void(0)" class="topbarbutton" onclick="openNav()">MENU</a>
+        <a href="index.html" class="topbarbutton">HOME</a>
+        <a href="boardgamesmain.html" class="topbarbutton">GAMES</a>
+        <a href="codingmain.html" class="topbarbuttonselected">CODING</a>
+        <a href="physicsmain.html" class="topbarbutton">PHYSICS</a>
+        <a href="astronomymain.html" class="topbarbutton">ASTRONOMY</a>
+    </div>
+
+    <!-- Page header with title of page-->
+    <div id="pagehead" class="pagetitle">
+      <h1> sunSpots.py</h1>
+    </div>
+
+
+    </div>
+    <!-- Side bar for page navigation-->
+    <div id="mysidemenu" class="sidemenu">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="index.html">HOME</a>
+
+
+
+    </div>
+
+
+    <!-- Main page content -->
+    <div id="mainpage">
+
+      <p>
+        This is beta code which has been tested on downloaded images of sunspots, but not on images
+        actually taken with the RPi camera. Therefore, a lot more optimization needs to be done before it will
+        necessarily work with the RPi images. This will also depend on the telescope through which the image is taken,
+        the filter used and your location/time of the year/time of day potentially, so a lot more work needs to be done. The
+        principle of searching the image for variations in pixel intensity works well though. It is also not yet fully commented and
+        there is still debugging code in there.
+      </p>
+      <figure>
+      <pre>
+      <code>
+        # Sunspot identification algorithm
+# Input RAW file; count and identify position of sunspots
+
+
+import numpy, scipy
+from scipy import misc
+from scipy import ndimage
+import matplotlib.pyplot as plt
+#from PIL import Image
+
+
+# Import JPG image from file - change to folder where piAstroCam saves images
+ff = misc.imread('C:/Users/dpryd/OneDrive/Pictures/sunspot/sunspots3.jpg')
+
+pixel_size = 10     #size of the smallest square to check for sunspots
+sunspot_reduction = 20     #make positive for sunspots
+sunspots = []       #array containing the sunspot circle plots
+sunspots_pos = []       #locations
+clumping_factor = 3     # the size of the area around a sunspot to not check for other sunspots, multiplier of pixel size
+circle_radius = pixel_size/2     #the circle to highlight sunspots
+sunspot_min = 60            # these conditions may need to be played with
+sunspot_max = 90
+median_filt_sigma = 5
+#find the mean pixel average for the sun
+def calc_sun_mean(image,height,length):
+    mean = []
+    for col in range(0,height,pixel_size):
+        for row in range(0,length,pixel_size):
+            pixel = image[row:row+pixel_size,col:col+pixel_size]
+            if(pixel.mean() > 50):
+                mean.append(pixel.mean())
+    return numpy.mean(mean)
+
+# filters the image so that any pixel above a threshold is white
+# and any below the threshold is black
+def extremeFilter(image,height,length):
+    for col in range(0,height):
+        for row in range(0,length):
+            if(image[row,col].mean() > 100):
+                image[row,col] = 0
+            else:
+                image[row,col] = 255
+    return image
+
+def checkForClump(sunspots_pos, height, length):
+    num_spots = len(sunspots_pos)
+    for pos in range(0,num_spots):    # go through all known sunspots
+        x_disp = -sunspots_pos[pos][0] + height    #find the square magnitude to that sunspot
+        y_disp = -sunspots_pos[pos][1] + length
+        dist_sqr = x_disp**2 + y_disp**2
+        if(dist_sqr < (clumping_factor*pixel_size)**2):
+            return True
+    return False
+
+
+# get size of image
+height = ff.shape[0]
+length = ff.shape[1]
+# mean value of pixel RBG
+#mean = ff.mean()   #mean of whole image
+
+mean = calc_sun_mean(ff,height,length)  #mean of sun disc
+# filtering or edge detection
+#ff = ndimage.gaussian_filter(ff, sigma=5)
+ff = ndimage.median_filter(ff,median_filt_sigma)   #median filtering
+#sx = ndimage.sobel(ff_filt, axis=1,mode='nearest')
+#sy = ndimage.sobel(ff_filt, axis=1)
+#sob = sx + sy
+##sy = ndimage.sobel(ff, axis=1, mode='constant')
+##ff = numpy.hypot(sx, sy)
+#plt.imshow(sx)
+#plt.show()
+#labels = ndimage.label(ff)
+
+#ff_filt = extremeFilter(ff,height,length)
+#plt.imshow(ff_filt)
+#plt.show()
+
+
+
+#print(mean)
+for col in range(0,height,pixel_size):
+    for row in range(0,length,pixel_size):
+        pixel = ff[row:row+pixel_size,col:col+pixel_size]
+        if(pixel.mean() < mean-sunspot_reduction and pixel.min() < sunspot_min and pixel.max() > sunspot_max):  #if pixel mean intensity is sufficiently different from the total mean
+            if(checkForClump(sunspots_pos, col, row) == False):
+                #plt dimensions are reversed relative to the shape function of ndarray
+                circle = plt.Circle((col,row),circle_radius,color='r',fill=False)
+                sunspots.append(circle)
+                sunspots_pos.append([col,row])
+
+
+plt.imshow(ff)
+ax = plt.gca()
+fig = plt.gcf()
+
+# each sunspot identified should be plotted on the image
+for sunspot in sunspots:
+    ax.add_artist(sunspot)
+#save the image to file
+plt.draw()
+fig.savefig('C:/Users/dpryd/OneDrive/Pictures/sunspot/fig.png')
+# show file if necessary
+plt.show()
+
+# Output the number of sunspots identified
+print("Number of sunspots = ", len(sunspots_pos))
+
+
+
+
+
+
+      </code>
+    </pre>
+  </figure>
+
+    </div>
+
+
+
+  </body>
+</html>
