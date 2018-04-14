@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blank page</title>
+    <title>Sunspot.py</title>
     <link rel="stylesheet" type="text/css" href="style.css"/>
     <script src="scripts.js"></script>
   </head>
@@ -159,14 +159,55 @@ plt.show()
 # Output the number of sunspots identified
 print("Number of sunspots = ", len(sunspots_pos))
 
-
-
-
-
-
       </code>
     </pre>
   </figure>
+<p>
+  The code below is a basic code for taking images via python on the Raspberry Pi. This will be integrated into a more useful and
+  complete script for the piAstroCam at a later date.
+</p>
+<figure>
+  <pre>
+    <code>
+      import RPi.GPIO as GPIO
+import os
+import subprocess
+import time
+import picamera
+from fractions import Fraction
+# piAstroCam uses the RPi camera module as a viewfinder and camera for still
+# images and video
+
+
+def takeImage(iso, exposure, name, n):
+	with picamera.PiCamera() as camera:
+		camera.ISO = int(iso)
+		camera.exposure_mode = "night"
+		camera.framerate = Fraction(1, int(exposure))
+		camera.shutter_speed = int(exposure)*1000000
+		#camera.start_preview()
+		#time.sleep(0.5)
+		camera.capture(name + str(n) + ".jpg")
+
+def multipleImages(iso, exposure, name, n):
+	for i in range(n):
+		takeImage(iso, exposure, name, i)
+		#time.sleep(1)
+
+n = int(raw_input("number of images"))
+iso = raw_input("ISO")
+exposure = raw_input("exposure length")
+name = raw_input("object name")
+
+
+multipleImages(iso, exposure, name, n)
+#takeImage(iso, exposure, name, 1)
+
+
+</code>
+</pre>
+</figure>
+
 
     </div>
 
