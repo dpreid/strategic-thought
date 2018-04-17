@@ -12,3 +12,8 @@ function closeNav() {
     document.getElementById("mainpage").style.marginLeft = "0px";
     document.getElementById("pagehead").style.marginLeft = "0px";
 }
+
+function imageLinkHover(){
+  document.getElementById("image_link_text").style.paddingBottom = "100px";
+  document.getElementById("image_link_text").style.top = "240px";
+}

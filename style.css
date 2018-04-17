@@ -92,6 +92,7 @@ a:visited{
   top: 0px;
   background-color: #5f5f5f;
   color: #f1f1f1;
+  z-index: 10;
 }
 
 #topmenubar a{
@@ -158,6 +159,65 @@ img {
     margin-right: auto;
     width: 100%;
 }
+/* Container class for images that are links*/
+.link_image_container{
+  float: left;
+  position: relative;
+  text-align: center;
+  width:300px;
+  height:400px;
+  margin-right: 20px;
+}
+
+
+/*
+.image_link_text {
+  font-size: 22pt;
+  color: rgb(255,255,255);
+  position:absolute;
+  top: 340px;
+  width:300px;
+  text-align: center;
+  background-color: #5f5f5f;
+  padding-top:10px;
+  padding-bottom: 10px;
+  padding-right: 66px;
+  padding-left: 60px;
+}
+*/
+.image_link_text {
+  font-size: 22pt;
+  color: rgb(255,255,255);
+  position:absolute;
+  top: 370px;
+  width:100%;
+  text-align: center;
+  background-color: #5f5f5f;
+  padding-top:10px;
+  padding-bottom: 10px;
+
+}
+
+.link_image_container a:hover ~ .image_link_text{
+  font-size: 22pt;
+  color: rgb(255,255,255);
+  position:absolute;
+  top: 270px;
+  text-align: center;
+  background-color: #5f5f5f;
+  padding-top:10px;
+  padding-bottom: 110px;
+  transition: 0.4s;
+}
+
+
+#link_image{
+  float: left;
+  object-fit: cover;
+  width:100%;
+  height:100%;
+}
+
 
 
 figure{
