@@ -164,32 +164,17 @@ img {
   float: left;
   position: relative;
   text-align: center;
-  width:300px;
-  height:400px;
+  width:250px;
+  height:300px;
   margin-right: 20px;
+  margin-bottom: 20px;
 }
-
-
-/*
+/* Sliding graphic when mouse hovers over image */
 .image_link_text {
   font-size: 22pt;
   color: rgb(255,255,255);
   position:absolute;
-  top: 340px;
-  width:300px;
-  text-align: center;
-  background-color: #5f5f5f;
-  padding-top:10px;
-  padding-bottom: 10px;
-  padding-right: 66px;
-  padding-left: 60px;
-}
-*/
-.image_link_text {
-  font-size: 22pt;
-  color: rgb(255,255,255);
-  position:absolute;
-  top: 370px;
+  bottom: -30px;
   width:100%;
   text-align: center;
   background-color: #5f5f5f;
@@ -202,7 +187,7 @@ img {
   font-size: 22pt;
   color: rgb(255,255,255);
   position:absolute;
-  top: 270px;
+  bottom: -30px;
   text-align: center;
   background-color: #5f5f5f;
   padding-top:10px;
