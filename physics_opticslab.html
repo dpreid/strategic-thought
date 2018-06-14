@@ -31,6 +31,8 @@
     <div id="mysidemenu" class="sidemenu">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="index.html">HOME</a>
+        <a href="#opticsLabTutorial1">Tutorial&nbsp;1</a>
+        <a href="#opticsLabTutorial2">Tutorial&nbsp;2</a>
 
 
 
@@ -39,18 +41,149 @@
 
     <!-- Main page content -->
     <div id="mainpage">
-        This page will be added to in the near future with details of ways in which OpticsLab can be used to
-        perform some optical experiments and give a tutorial on how to use the program.
-    </div>
 
+      <!--The WebGL OpticsLab build -->
+      <p>
+        The WebGL build embedded below shows the basic functionality of the simulation (now on version 1.2) and is available
+        at <a href="https://simmer.io/@dpreid/opticslab"> simmer.io </a>. It is at a lower quality than the
+        standalone build that it is available at <a href="https://github.com/dpreid/opticsLab"> OpticsLab </a>.
+      </p>
+
+        <!-- Introduction -->
 <p>
-  The WebGL build embedded below shows the basic functionality of the simulation (now on version 1.2) and is available
-  at <a href="https://simmer.io/@dpreid/opticslab"> simmer.io </a>. It is at a lower quality than the
-  standalone build that it is available at <a href="https://github.com/dpreid/opticsLab"> OpticsLab </a>.
+  Optics Lab is a series of optical simulations to help teachers teach and learners learn. It currently contains
+  a number of optical systems that are important for GCSE and A level Physics (particularly Astrophysics and Medical Physics)
+  and will be relevant to many other secondary education systems. The simulations utilise ray tracing matrices and therefore
+  assume the paraxial approximation which ultimately means that accuracy is reduced the further from the optical axis a ray is
+  and the greater the angle it interacts with the optic. More on the maths of ray tracing will be added to a tutorial below.
+  A WebGL embedded version of the software is available below, but a higher resolution version can be downloaded for Windows, Mac or
+  Linux on GitHub.
+</p>
+<p>
+  <a href="https://github.com/dpreid/opticsLab">Download the standalone version at GitHub</a>. Download a zip file of the
+  full repository and then find the appropriate version for your system in the builds folder.
 </p>
 
 <iframe src="https://c.simmer.io/static/unityFrame/index.html?url=https%3A%2F%2Fsimmercdn.com%2Funity%2F8t8LP4p6WIg2UwQOjPnDftBDJcI3%2Fcontent%2F39709781-becb-3c78-8b48-caee773ca2b0&imagePath=screens/1.png" style="width:960px;height:600px;border:0"></iframe>
 
+      <!--Optics lab tutorial 1 section -->
+  <h2 id="opticsLabTutorial1"> Optics Lab Tutorial 1: Basic functionality </h2>
+  <p>
+      This first tutorial will give an overview of the basic functions of the Optics Lab software and an
+      idea of the kinds of simulations/experiments/measurements that can be done.
+  </p>
+  <h3> Controls</h3>
+  <p>
+    All simulations are controlled with the mouse and keyboard: the general rule is that the left mouse button
+    can be used to move rayboxes and optics and the right mouse button is used for measurements of distance and angle.
+    The <b>rayboxes</b> can be left clicked on directly to translate them; left clicking on the red square next to them allows for
+    rotation. They can also be rotated by directly inputing the angle of rotation in the corresponding raybox angle textbox on the
+    user interface. The <b>lenses</b> are fixed in position unless the have a blue square next to them: left clicking this
+    blue square allows you to translate the position of them - optics cannot (currently) be rotated. Some simulations will allow
+    <b>zooming in and out of the scene with the scroll wheel on a mouse</b>. The sandbox scene (where you can build your own optical systems)
+    allows for <b>camera movement with the WASD keys</b>.
+  </p>
+  <h3> Measurements</h3>
+  <p>
+    For many of the simulations it is useful to be able to <b>measure distances</b> (focal lengths for example) and <b>angles</b> (refractive index).
+    With the "Ruler" button showing, right clicking at a position will show a crosshair at that location. Right click at another
+    position and a second crosshair will appear with a connecting bar between the two. The distance between these two crosshairs
+    will be displayed next to the "Ruler" button. Left clicking the ruler button will change it to a "Protractor" in order to make
+    angle measurements. With the "Protractor" showing, clicking at 3 locations will display the inner angle connecting these 3 positions.
+    Moveable axes (vertical and horizontal) can be positioned to make measuring angles easier.
+  </p>
+  <h3> Simulations and Experiments</h3>
+  <p>
+    A number of important optical systems have been predesigned and can be found by clicking <i>Start</i> in the initial menu. Currently, the
+    refractive index, focal length or radius of curvature of these optics cannot be changed. However, the <i><b>Sandbox</b></i> scene allows for
+    much more customisation and by entering a value in the textbox beneath the optic and then clicking on the UI image of that optic, it will be
+    created with the input refractive index or focal length.
+  </p>
+  <p>
+      The details of individual simulations and the experiments that can be performed with them will be left to separate tutorials, but here is
+      a (non-exhaustive) list of possibilities.
+  <ul>
+    <li>Angular magnification with a refracting telescope</li>
+      <li>Refracting telescope in normal adjustment</li>
+      <li>Newtonian reflector</li>
+      <li>Refractive index of glass block: measuring the angles of incidence and refraction of a parallel sided prism</li>
+      <li> Thin lens focal point</li>
+      <li> Real and virtual images for a thin lens</li>
+      <li>Magnification with a thin lens</li>
+      <li> Build simulations of the eye with convex and concave glasses lenses</li>
+    </ul>
+  </p>
 
+
+<!--Tutorial 2 Refracting telescope -->
+<h2 id="opticsLabTutorial2"> Optics Lab Tutorial 2: Refracting Telescope </h2>
+
+<figure>
+  <img src="images/physics/refractornormaladjustment.PNG" alt="normaladjustment">
+  <figcaption> Fig.1: The basic layout of a refracting telescope in normal adjustment. Taken from Optics Lab.</figcaption>
+</figure>
+
+<p>
+  At its most basic, the refracting telescope is a combination of a long focal length objective lens that is used to focus
+  the light from your object in order to form an image of it and a shorter focal length eyepiece lens which magnifies that image.
+  Fig. 1 shows this basic layout which can be demonstrated in the Refracting Telescope scene of Optics Lab. This telescope is also
+  setup in normal adjustment: parallel rays entering the objective, leave the eyepiece as parallel rays. Normal adjustment
+  requires that the distance between your lenses is equal to the sum of their focal lengths.
+</p>
+<p>
+    (1) &nbsp;&nbsp;&nbsp;&nbsp;     f<sub>obj</sub> + f<sub>eye</sub> = d
+</p>
+
+<p>
+  Using the <b>ruler tool</b> on Optics Lab we can measure the focal lengths of these lenses. The principal focus is the focal point of
+  parallel rays entering the lens. We can see in Fig. 1 that parallel rays enter the objective therefore the focus
+  is the principle focus and measuring the length from the centre of the lens to that focus gives us the focal length of that lens.
+  Similarly, since our telescope is in normal adjustment, the rays entering the eyepiece leave parallal, so the distance between this
+  lens at the focal point is the focal length of that lens.
+</p>
+<p>
+  <b>TASK 1</b>: Measure the focal length of each lens and show that when the telescope is in normal adjustment, equation (1) holds.
+</p>
+<p>
+  The angular magnification of a telescope tells you how many times larger the angular separation between stars will appear through the telescope
+  as compared to the naked eye.
+</p>
+
+<figure>
+  <img src="images/physics/refractorangularmag.PNG" alt="angularmag">
+  <figcaption> Fig.2: The angular magnification of a refractor. Taken from Optics Lab.</figcaption>
+</figure>
+
+<p>
+    (2) &nbsp;&nbsp;&nbsp;&nbsp;     M = &beta;/&alpha;
+</p>
+<p>
+  Where &alpha; is the angle between the optical axis and the rays entering the objective and &beta; is the angle between the optical axis
+  and the rays leaving the eyepiece.
+</p>
+<p>
+  <b>TASK 2</b>: Use the protractor tool to measure the angles &alpha; and &beta;. Move the horizontal axis into a position to act as the
+  optical axis. Calculate the angular magnification of this telescope. Fig. 3 gives an example of measuring the angle &beta;.
+</p>
+
+<p>
+  The angular magnification of the telescope can be found more easily by finding the ratio of the focal lengths of the telescope lenses.
+</p>
+<p>
+    (3) &nbsp;&nbsp;&nbsp;&nbsp;     M = f<sub>obj</sub>/f<sub>eye</sub>
+</p>
+<p>
+    <b>TASK 3</b>: Compare the magnification found in TASK 2 with that using the ratios of the focal lengths. You should find that you get the
+    same value.
+</p>
+
+<figure>
+  <img src="images/physics/refractoranglemeasure.PNG" alt="angularmag">
+  <figcaption> Fig.3: The protractor tool can be used to measure angles. Taken from Optics Lab.</figcaption>
+</figure>
+
+
+
+</div>
   </body>
 </html>
