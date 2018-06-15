@@ -31,6 +31,7 @@
     <div id="mysidemenu" class="sidemenu">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="index.html">HOME</a>
+        <a href="#mechanicslabtutorial1">Tutorial&nbsp;1</a>
 
 
 
@@ -40,13 +41,118 @@
     <!-- Main page content -->
     <div id="mainpage">
 
+      <!--Beta version explanation -->
       <p>
-        MechanicsLab tutorials and lesson ideas will appear here over time. The embedded WebGL build below gives
-        an idea of what the final software will be like, but is in a very early version currently with bugs and
-        UI glitches.
+        The WebGL build embedded below shows the basic functionality of the simulation and is available
+        at <a href="https://simmer.io/@dpreid/opticslab"> simmer.io </a>. It is a lower quality version than the
+        standalone build that it is available at <a href="https://github.com/dpreid/opticsLab"> Mechanics Lab </a>.
+        Mechanics Lab is still very much in a development stage and although the Physics is almost fully functional, the
+        user interfaces, overall design and large parts of the functionality are still missing. However, there is still some
+        useful Physics that can be done with it.
       </p>
 
-      <iframe src="https://c.simmer.io/static/unityFrame/index.html?url=https%3A%2F%2Fsimmercdn.com%2Funity%2F8t8LP4p6WIg2UwQOjPnDftBDJcI3%2Fcontent%2F2b8e55ad-6fd6-66f6-39a8-5e76586e49d6&imagePath=screens/3.png" style="width:960px;height:600px;border:0"></iframe>
+
+
+      <!--Introduction -->
+      <p>
+          Mechanics Lab is a series of Physics simulations on many important areas of classical mechanics from GCSE and A level Physics.
+          Currently, it has simulations for adding vectors, moments, projectiles, simple harmonic motion, friction and orbits. Tutorials
+          for teachers and students will appear below with examples of possible experiments and the measurements that can be done with
+          the Mechanics Lab software. An embedded version is below, but a standalone (higher resolution) version for Windows, Mac and Linux is available on GitHub.
+      </p>
+      <p>
+        <a href="https://github.com/dpreid/mechanicsLab">Download the standalone version at GitHub</a>. Download a zip file of the
+        full repository and then find the appropriate version for your system in the builds folder.
+      </p>
+
+      <!--WebGL embedded version -->
+<iframe src="https://c.simmer.io/static/unityFrame/index.html?url=https%3A%2F%2Fsimmercdn.com%2Funity%2F8t8LP4p6WIg2UwQOjPnDftBDJcI3%2Fcontent%2F2b8e55ad-6fd6-66f6-39a8-5e76586e49d6&imagePath=screens/3.png" style="width:960px;height:600px;border:0"></iframe>
+
+<!--Tutorial 1: Adding vectors -->
+
+<h2 id="mechanicslabtutorial1"> Tutorial 1: Projectiles: calculating and measuring height and range</h2>
+
+<p>
+  Projectile motion is an important section of Mechanics in A level Physics. The "Projectiles" level of Mechanics Lab gives students the
+  opportunity to visualise projectile motion, do calculations using 2D equations of motion and to experiment on the effects of adding drag
+  and changing the gravitational field strength. A basic gaming element has been added to this simulation: the aim is to hit as many
+  target boxes as possible, with a score being tracked for the ratio of hits to shots fired.
+</p>
+
+<h3> Measurements and Variables</h3>
+<p>
+    The ruler tool is available in this scene, allowing the measurement of distances, with the range and height of the target being particularly
+    useful. The end of the cannon barrel is the position at which the cannonball has the initial velocity stated at the top of the UI,
+    therefore measurements of the height or range should be from this position. This is shown in Fig. 1. Right click to set the starting point for the distance measurement and
+    right click again to define the end point. The distance between these two points will be displayed at the bottom of the screen. The horizontal and vertical
+    axes will be useful to help measure distances as shown in Fig. 2 and 3. The angle of projection can be changed by left clicking on the cannon barrel itself and moving
+    it into position. The initial velocity can be increased and decreased by clicking the corresponding buttons on the UI. The Physics of the simulation can be changed by
+    changing the drag coefficient and the gravitational field strength (positive values of g will still act in the negative y direction).
+</p>
+<p>
+    For calculations, it will be important to remember that the angle shown is the angle measured from the horizontal.
+</p>
+
+<figure>
+  <img src="images/physics/projectileExitPoint.PNG" alt="exitPoint">
+  <figcaption> Fig.1: The position from which the cannonball begins its projectile motion is at the far end of the cannon barrel.
+    Taken from Mechanics Lab > Projectile scene in the Unity editor.</figcaption>
+</figure>
+
+<figure>
+  <img src="images/physics/projectileRangeMeasurement.PNG" alt="rangeMeasurement">
+  <figcaption> Fig.2: Using the ruler tool with the help of the horizontal axis to accurately measure the range of the projectile
+  motion. Taken from Mechanics Lab > Projectile scene</figcaption>
+</figure>
+
+<figure>
+  <img src="images/physics/projectileHeightMeasurement.PNG" alt="heightMeasurement">
+  <figcaption> Fig.3: Using the ruler tool and the vertical axis to measure the maximum height of the projectile motion.
+  From Mechanics Lab > Projectile scene.</figcaption>
+</figure>
+
+<!-- Example calculation that can be done-->
+<h3> Calculating the range of projectile motion</h3>
+
+<p>
+  The following equations of motion are useful when considering (no air resistance) projectile motion:
+</p>
+
+<p>
+    (1) &nbsp;&nbsp;&nbsp;&nbsp; v = u + at
+</p>
+<p>
+    (2) &nbsp;&nbsp;&nbsp;&nbsp; s = ut + 0.5at<sup>2</sup>
+</p>
+<p>
+    (3) &nbsp;&nbsp;&nbsp;&nbsp; v<sup>2</sup> = u<sup>2</sup> + 2as
+</p>
+<p>
+    (4) &nbsp;&nbsp;&nbsp;&nbsp; s = 0.5(u+v)t
+</p>
+
+<p>
+  Where u is the initial velocity, v the final velocity, t the time between that initial and final velocity and s is the displacement
+  between the initial and final positions. The horizontal range, since acceleration by gravity only occurs in the y (vertical) direction is
+  simply found using the basic distance, speed, time relationship: equation (2) with no second term.
+</p>
+<p>
+  <b>TASK 1</b>: Set the initial velocity and angle of the projectile in order to plot a full parabolic curve and not hit the target box (
+  don't worry about your score just now). An example is shown in Fig. 3.
+</p>
+<p>
+  <b>TASK 2</b>: Remembering that the initial velocity needs to be resolved into vertical and horizontal components and that we know
+  what the value of vertical velocity is at the projectile's maximum height, calculate the time taken to reach this maximum height.
+</p>
+<p>
+  <b>TASK 3</b>: Calculate the horizontal distance covered by the projectile when it reaches its maximum height and use the ruler tool
+  with the axes to measure and check your result.
+</p>
+<p>
+  <b>TASK 4</b>: Calculate the maximum height reached and measure it to check your answer.
+</p>
+
+
     </div>
 
 
