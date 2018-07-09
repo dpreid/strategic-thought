@@ -63,7 +63,7 @@ a:visited{
 /* Style page content */
 #mainpage {
     margin-left: 20px; /* Same as the width of the sidebar */
-    padding: 0px 10px;
+    padding: 10px 10px;
     font-family: "Segoe UI",Arial,sans-serif;
     font-size: 16px;
 }
@@ -169,6 +169,8 @@ img {
   margin-right: 20px;
   margin-bottom: 20px;
 }
+
+
 /* Sliding graphic when mouse hovers over image */
 .image_link_text {
   font-size: 22pt;
