@@ -10,7 +10,7 @@
 
      gtag('config', 'UA-122367133-1');
    </script>
-   
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MechanicsLab</title>
@@ -41,7 +41,9 @@
     <div id="mysidemenu" class="sidemenu">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="index.html">HOME</a>
+        <a href="#mechanicslabtutorial0">Tutorial&nbsp;0</a>
         <a href="#mechanicslabtutorial1">Tutorial&nbsp;1</a>
+        <a href="#mechanicslabtutorial2">Tutorial&nbsp;2</a>
 
 
 
@@ -53,12 +55,10 @@
 
       <!--Beta version explanation -->
       <p>
-        The WebGL build embedded below shows the basic functionality of the simulation and is available
-        at <a href="https://simmer.io/@dpreid/opticslab"> simmer.io </a>. C# code for the
-        simulation is available at <a href="https://github.com/dpreid/opticsLab"> Mechanics Lab </a>.
-        Mechanics Lab is still very much in a development stage and although the Physics is almost fully functional, the
-        user interfaces, overall design and large parts of the functionality are still missing. However, there is still some
-        useful Physics that can be done with it.
+        The WebGL build below is a low resolution version of the software and was embedded using <a href="https://simmer.io/@dpreid/opticslab"> simmer.io </a>.
+        C# code for the simulation is available at <a href="https://github.com/dpreid/opticsLab"> Mechanics Lab </a>.
+        Version 1.0 of Mechanics Lab is now available on the Windows Store and as a standalone Linux download using the links in the Download
+        section below.
       </p>
 
 
@@ -66,23 +66,97 @@
       <!--Introduction -->
       <p>
           Mechanics Lab is a series of Physics simulations on many important areas of classical mechanics from GCSE and A level Physics.
-          Currently, it has simulations for adding vectors, moments, projectiles, simple harmonic motion, friction and orbits. Tutorials
-          for teachers and students will appear below with examples of possible experiments and the measurements that can be done with
+          Currently, it has simulations for adding vectors, moments, projectiles, simple harmonic motion, friction, orbits and momentum.
+          Tutorials for teachers and students will appear below with examples of possible experiments and the measurements that can be done with
           the Mechanics Lab software. An embedded version is below.
       </p>
+
+      <h2> Downloads</h2>
+      <h3> Windows </h3>
       <p>
-          Downloadable, standalone versions of the software will be available in the future.
+          The latest, high resolution version of Mechanics Lab can be downloaded from the Microsoft Store at:
+      </p>
+      <p>
+        <a href="https://www.microsoft.com/store/productId/9NF2DFMSN9PN"> Mechanics Lab </a>
+      </p>
+      <h3> Linux </h3>
+      <p>
+        I have plans to add a Linux build through Snapcraft for download, but for now a standalone linux build can be downloaded from the
+        link below. Right click and "Save target as" if left clicking doesn't automatically download the file. You will then need to extract the file
+        which can be done from the command line with:
+      </p>
+      <p>
+        tar -zxf mechanicsLabv1.0.tar.gz
+      </p>
+      <p>
+        Double clicking the executable file should start the program. If not, right click, go to Properties and check in the Permissions tab that
+        "Allow executing as a program" is checked.
+      </p>
+      <p>
+          LINK WILL APPEAR HERE SOON
       </p>
 
       <!--WebGL embedded version -->
 <iframe src="https://c.simmer.io/static/unityFrame/index.html?url=https%3A%2F%2Fsimmercdn.com%2Funity%2F8t8LP4p6WIg2UwQOjPnDftBDJcI3%2Fcontent%2F2b8e55ad-6fd6-66f6-39a8-5e76586e49d6&imagePath=screens/3.png" style="width:960px;height:600px;border:0"></iframe>
 
-<!--Tutorial 1: Adding vectors -->
+<!--Tutorial 0: Basic functionality -->
+
+<h2 id="mechanicslabtutorial0"> Tutorial 0: Mechanics Lab basics</h2>
+
+<p>
+  Each simulation in Mechanics Lab is designed to encourage students to experiment, measure and calculate - they will not necessarily
+  provide the answers to problems: but the correct behaviour in a simulation will probably indicate a correct solution. Many of the
+  simulations will include moveable horizontal and vertical axes; multiple input fields for different variables; a ruler tool for measuring
+  distances; and a protractor tool for measuring angles. This is a basic run through of these key interactive elements and will be useful
+  for accessing any of the simulations (although most can hopefully be figured out by simply playing with the software).
+</p>
+
+<h3> Measuring tools</h3>
+
+<p>
+The ruler tool is selected by default and is shown at the bottom of most simulations. To make a measurement with this tool simply right-click
+at the two points between which you want to measure the distance. Two crosshairs will show and next to the ruler button will be displayed the
+distance (see Fig 0.1). The scale is based upon the standard Unity scale (the engine used to create these simulations)- but apply any unit you wish.
+</p>
+
+<figure>
+  <img src="images/physics/MechanicsLabImages/mechLabTutorial0Ruler.PNG" alt="ruler">
+  <figcaption> Fig 0.1: The ruler tool measures the distance between two points.</figcaption>
+</figure>
+
+<p>
+  Some simulations will also include a protractor tool (important in 2D momentum calculations for example). In order to change to the protractor
+  tool, simply left click on the "Ruler" button. Angle measurements can now be made by clicking at 3 points. If your first point is A, second B
+  and third C then the angle measured is ABC (as shown in Fig 0.2). Angles are in degrees and run from 0 to 180 clockwise and anticlockwise from the positive x axis
+  to the negative x axis.
+</p>
+
+<figure>
+  <img src="images/physics/MechanicsLabImages/mechLabTutorial0Protractor.PNG" alt="protractor">
+  <figcaption> Fig 0.2: The protractor tool measures the inner angle between three points.</figcaption>
+</figure>
+
+<p>
+The horizontal and vertical axes are useful in a number of simulations, particularly when measuring angles in the momentum simulation; as a
+fiducial mark in the simple harmonic motion simulations; or in order to identify positions of constant horizontal or vertical displacement in
+the projectiles simulation (see Figures 1.2 and 1.3 as examples). Simply left-click the square at the axes intersection and move to the required position.
+</p>
+
+<h3> Help menus </h3>
+
+<p>
+  Most of the simulations are pretty intuitive and within a couple of minutes of playing around with it you will have an understanding of how they work
+  and what they are doing. However, there can be important, specific information for each and a "Help" button exists in each simulation in order to
+  provide this information. An important example is the Orbits simulation: the units used in this simulation are not exactly the most commonly used (ultimately they are
+  based on the Astronomical Unit, AU, as the distance unit, rather than the metre) and therefore some useful units are provided here.
+</p>
+
+<!--Tutorial 1: Projectiles -->
 
 <h2 id="mechanicslabtutorial1"> Tutorial 1: Projectiles: calculating and measuring height and range</h2>
 
 <p>
-  Projectile motion is an important section of Mechanics in A level Physics. The "Projectiles" level of Mechanics Lab gives students the
+  Projectile motion is an important section of Mechanics in A level Physics. The "Projectiles" simulation in Mechanics Lab gives students the
   opportunity to visualise projectile motion, do calculations using 2D equations of motion and to experiment on the effects of adding drag
   and changing the gravitational field strength. A basic gaming element has been added to this simulation: the aim is to hit as many
   target boxes as possible, with a score being tracked for the ratio of hits to shots fired.
@@ -104,19 +178,19 @@
 
 <figure>
   <img src="images/physics/projectileExitPoint.PNG" alt="exitPoint">
-  <figcaption> Fig.1: The position from which the cannonball begins its projectile motion is at the far end of the cannon barrel.
+  <figcaption> Fig 1.1: The position from which the cannonball begins its projectile motion is at the far end of the cannon barrel.
     Taken from Mechanics Lab > Projectile scene in the Unity editor.</figcaption>
 </figure>
 
 <figure>
   <img src="images/physics/projectileRangeMeasurement.PNG" alt="rangeMeasurement">
-  <figcaption> Fig.2: Using the ruler tool with the help of the horizontal axis to accurately measure the range of the projectile
+  <figcaption> Fig 1.2: Using the ruler tool with the help of the horizontal axis to accurately measure the range of the projectile
   motion. Taken from Mechanics Lab > Projectile scene</figcaption>
 </figure>
 
 <figure>
   <img src="images/physics/projectileHeightMeasurement.PNG" alt="heightMeasurement">
-  <figcaption> Fig.3: Using the ruler tool and the vertical axis to measure the maximum height of the projectile motion.
+  <figcaption> Fig 1.3: Using the ruler tool and the vertical axis to measure the maximum height of the projectile motion.
   From Mechanics Lab > Projectile scene.</figcaption>
 </figure>
 
@@ -128,16 +202,16 @@
 </p>
 
 <p>
-    (1) &nbsp;&nbsp;&nbsp;&nbsp; v = u + at
+    (1.1) &nbsp;&nbsp;&nbsp;&nbsp; v = u + at
 </p>
 <p>
-    (2) &nbsp;&nbsp;&nbsp;&nbsp; s = ut + 0.5at<sup>2</sup>
+    (1.2) &nbsp;&nbsp;&nbsp;&nbsp; s = ut + 0.5at<sup>2</sup>
 </p>
 <p>
-    (3) &nbsp;&nbsp;&nbsp;&nbsp; v<sup>2</sup> = u<sup>2</sup> + 2as
+    (1.3) &nbsp;&nbsp;&nbsp;&nbsp; v<sup>2</sup> = u<sup>2</sup> + 2as
 </p>
 <p>
-    (4) &nbsp;&nbsp;&nbsp;&nbsp; s = 0.5(u+v)t
+    (1.4) &nbsp;&nbsp;&nbsp;&nbsp; s = 0.5(u+v)t
 </p>
 
 <p>
@@ -162,7 +236,149 @@
 </p>
 
 
-    </div>
+<!--Tutorial 2: Momentum -->
+
+<h2 id="mechanicslabtutorial2"> Tutorial 2: Conservation of momentum in 1D and 2D</h2>
+
+<figure>
+  <img src="images/physics/mechanicsLabMomentumUI.PNG" alt="mechanicsLab">
+  <figcaption> Fig 2.1: Overview of the Momentum simulation.
+  From Mechanics Lab > Momentum.</figcaption>
+</figure>
+
+<h3> Making measurements </h3>
+
+<p>
+    Since the intention of these simulations is to make the student interact, measure and calculate rather than simply be provided with answers,
+    it is necessary in the momentum scene to use the ruler and protractor tool in order to study the collisions. The key to making these measurements
+    is the fact that each "puck" produces a trail of dots each of which is separated by 0.1 seconds. By measuring the distance between dots separated by
+    around 20 intervals (the more the better) and dividing by the total time taken to produce those dots (the number of spaces between dots multiplied by 0.1s) we
+    will find the speed.
+</p>
+
+<p>
+  <b>TASK 1</b>: Click and drag the central black circle on one of the pucks in order to set the initial velocity. Launch the puck and then measure the speed
+  using the above technique. Compare your measured value to the initial speed. There is a worked example below.
+</p>
+
+<p>
+    Like all measurements in Physics, there is some uncertainty and you may find that your measured value was not identical to the initial set value. Errors in the
+    ruler measurement are easy to make if you are not careful and it is impossible to be completely accurate with your positioning of the ruler crosshairs on top of dots.
+    Also be careful to find the time interval by counting the <b>spaces between dots</b>: this is equal to the <b>number of dots from your first crosshair to the last (including the ones that
+    they are on top of) minus 1</b>.
+</p>
+
+<h3> Worked example: Speed measurement</h3>
+
+<p>
+  In Fig 2.2a we can see that the initial speed was set to 14m/s. After launching, the blue puck produces dots every 0.1s. In Fig 2.1b, the ruler tool has been used to measure the distance over 31 time intervals.
+  With a measured distance of 43.5 (metres) and a time interval of 31 x 0.1 (seconds), the speed is:
+</p>
+
+<p>
+  (2.1) &nbsp;&nbsp;&nbsp;&nbsp; v = d/t = 43.5 / 3.1 = <b>14.0</b>(m/s) (to 1dp)
+</p>
+
+<p>
+  Which is the speed that we initially set.
+</p>
+
+<figure>
+  <img src="images/physics/MechanicsLabImages/mechLabSpeedMeasurement1.PNG" alt="speedMeasurement1">
+  <img src="images/physics/MechanicsLabImages/mechLabSpeedMeasurement2.PNG" alt="speedMeasurement2">
+  <figcaption> Fig 2.2: a) The initial speed is set using the circular vector header. b) The ruler tool allows
+    the speed measurement to be made.
+  From Mechanics Lab > Momentum.</figcaption>
+</figure>
+
+<h3> 2D Conservation of momentum </h3>
+
+<p>
+This example will start with the blue puck moving in only 1 dimension and the yellow puck stationary. In order to set it up, click on the 2D
+check box, this allows you to position the blue puck slightly above its starting position (see Fig 2.3a). Uncheck the 2D checkbox to then limit
+the motion of the blue puck to the horizontal only.
+</p>
+
+<p>
+  <b>TASK 2</b>: Setup your momentum simulation in a similar way to Fig 2.3a. Give your puck an initial horizontal velocity by moving the circular vector header.
+</p>
+
+<p>
+  Clicking launch will then fire the puck at the stated velocity, you should find that the paths look something similar to Fig 2.3b.
+</p>
+
+<figure>
+  <img src="images/physics/MechanicsLabImages/mechLabMomentum1.PNG" alt="momentum1">
+  <img src="images/physics/MechanicsLabImages/mechLabMomentum2.PNG" alt="momentum2">
+  <figcaption> Fig 2.3: a) The setup and b) launch for the 2D conservation of momentum calculation.
+  From Mechanics Lab > Momentum.</figcaption>
+</figure>
+
+<p>
+  <b>TASK 3</b>: Measure the speed of each of the pucks after the collision using the technique demonstrated in the worked example above.
+</p>
+
+<p>
+  <b>TASk 4</b>: For both pucks, measure the angle to the horizontal of the velocity vector. Figure 2.4 gives an example.
+</p>
+
+<figure>
+  <img src="images/physics/MechanicsLabImages/mechLabAngle1.PNG" alt="angle1">
+  <img src="images/physics/MechanicsLabImages/mechLabAngle2.PNG" alt="angle2">
+  <figcaption> Fig 2.4: a) Angle measurements for blue puck velocity vector and b) for the yellow puck.
+  From Mechanics Lab > Momentum.</figcaption>
+</figure>
+
+<p>
+  If you kept the mass of each puck the same (i.e. you didn't change either of them from 10kg) then you should find that the angle between the two final
+  trajectories is 90 degrees. This is a feature of 2D collisions that should reveal to you that the colliders have equal mass. You should experiment
+  with different mass combinations to see what happens when the masses are different.
+</p>
+<p>
+  If momentum is conserved in our simulation then the total final momentum should equal the total initial momentum. Since we are working in 2D
+  we need to consider both the horizontal and vertical momentum. Since we only had a horizontal initial velocity the total initial momentum is simply the
+  initial horizontal velocity multiplied by the mass.
+</p>
+<p>
+  <b>TASK 5</b>: Calculate the initial horizontal momentum. What is the initial vertical momentum?
+</p>
+
+<p>
+  After the collision, both pucks move with horizontal (x component in the equations below) and vertical (y) components. It can make the calculations easier
+  to simply consider a 2D momentum calculation as two 1D momentum calculatons. The necessary conservation equations are 2.2 and 2.3 below:
+</p>
+
+<p>
+  (2.2) &nbsp;&nbsp;&nbsp;&nbsp; <b>p</b><sub>x</sub>(initial) = <b>p</b><sub>x</sub>(blue,final) + <b>p</b><sub>x</sub>(yellow,final)
+</p>
+<p>
+  (2.3) &nbsp;&nbsp;&nbsp;&nbsp; <b>p</b><sub>y</sub>(initial) = <b>p</b><sub>y</sub>(blue,final) + <b>p</b><sub>y</sub>(yellow,final)
+</p>
+
+<p>
+  Remember that the bold signifies that the quantity is a vector and that vector addition is necessary (i.e. velocities up and down or left and right will
+  have opposite signs).
+</p>
+
+<p>
+  <b>TASK 6</b>: Calculate the horizontal component of the blue and yellow pucks. If you followed the above setup then both should be positive (to the right).
+  If you add both of the components together you should find that they equal the initial horizontal momentum. Check that they do.
+</p>
+
+<p>
+  <b>TASK 7</b>: Calculate the vertical component of the blue and yellow pucks. If you followed the above setup then the blue puck will be positive (up) and
+  the yellow puck will be negative (down). In this case, when we "add" the vectors, we need to subtract the magnitude of the yellow vertical component from the magnitude of the
+  blue vertical component. You should find that the vertical components are equal and opposite, therefore the overall final vertical momentum is zero (as it was to start).
+</p>
+
+<p>
+  Remember that since we have measured the angle to the horizontal, the horizontal component of the velocity is the cosine component and the vertical component is the sine.
+</p>
+<p>
+  Since vertical and horizontal momenta are conserved, the overall momentum is conserved.
+</p>
+
+</div>
 
 
 
