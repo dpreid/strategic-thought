@@ -378,6 +378,176 @@ the motion of the blue puck to the horizontal only.
   Since vertical and horizontal momenta are conserved, the overall momentum is conserved.
 </p>
 
+
+<!--Tutorial 3: Orbits -->
+
+<h2 id="mechanicslabtutorial3"> Tutorial 3: Orbits: Calculating circular velocity</h2>
+
+<figure>
+  <img src="images/physics/MechanicsLabImages/mechLabOrbits.PNG" alt="orbitsOverview">
+  <figcaption> Fig 3.1: Overview of the Orbits simulation screen.
+  From Mechanics Lab > Orbits.</figcaption>
+</figure>
+
+<p>
+  The Orbits simulation gives students the opportunity to experiment with many aspects of basic, two body, orbital dynamics, including: varying the mass of each body; varying the
+  orbital speed; changing the distance between the bodies; testing calculations; identifying key features of orbits such as Kepler's Laws and applying Newton's Law of Gravitation.
+  This tutorial focuses on the circular orbit calculations that are important for IGCSE and A level Physics and how the simulations can be used to test your solutions.
+</p>
+
+<h3> Quick note: Units</h3>
+<p>
+  The Orbits simulation uses slightly unusual units: ultimately, they are all defined by using the Astronomical Unit (AU) as the basic distance measurement (it seemed logical to build the
+  simulation from this definition, with 1 unit in Unity equally 1 AU). That means that speeds are measured in AU/s and Newton's Gravitational constant is in units of AU<sup>3</sup>M<sub>o</sub><sup>-1</sup>s<sup>-2</sup>,
+  where M<sub>o</sub> is the solar mass. The total energy of the two bodies is also given and is in the units of M<sub>o</sub>AU<sup>2</sup>s<sup>-2</sup>. It should be noted that the energy is calculated relative to the stationary
+  "Main Camera" which is the starting view, not the centre of mass frame. Below is a list of useful quantities in these units (some are also given in the Help menu in the simulation itself):
+  <ul>
+    <li> G = 3.964 x 10<sup>-14</sup> AU<sup>3</sup>M<sub>o</sub><sup>-1</sup>s<sup>-2</sup> </li>
+    <li> 1 AU = 1.496 x 10<sup>11</sup> m </li>
+    <li> 1 M<sub>o</sub> = 1.989 x 10<sup>30</sup> kg </li>
+    <li> 1 M<sub>earth</sub> = 5.972 x 10<sup>24</sup> kg = 3 x 10<sup>-6</sup>M<sub>o</sub></li>
+    <li> v<sub>earth</sub> = 1.99 x 10<sup>-7</sup> AU/s </li>
+  </ul>
+
+  Where v<sub>earth</sub> is the speed of the Earth in a circular orbit around the Sun at 1 AU distance.
+</p>
+<p>
+  When inputing small values such as velocities in AU/s then simply use <b>scientific notation by typing e or E and then the power term</b>. For example, the circular velocity of the Earth around the Sun is <b>1.99e-7</b>.
+</p>
+
+<h3> Quick note: Speed relative to what? </h3>
+<p>
+  Reference frames are an extremely important consideration in Physics. If we said that a car was stationary whilst parked we only mean relative to the Earth's surface. Look at the car from space and you will see it moving as the Earth
+  rotates, or relative to the Sun watch it fly around in an orbit....what about relative to the Milky Way galaxy! In these simulations the speed is calculated relative to the "stationary" Main Camera: some kind of absolute reference frame
+  above the centre of the screen. If the centre of mass moves relative to this view then you can change camera to the CoM camera which will allow the CoM to remain stationary relative to the screen view; however, velocities are still calculated
+  relative to the original Main Camera. I may attempt to modify this for future releases of Mechanics Lab.
+</p>
+
+<h3> Circular Orbits: M >> m </h3>
+<p>
+  The most common scenario for GCSE and A level questions are circular orbits where the central mass (M) is much, much greater than the orbiting mass (m) and therefore the central mass is considered stationary and all velocities are relative to it. The following
+  analysis assumes that you maintain large differences between the Earth and Sun masses in the simulation.
+</p>
+<p>
+  We can see in Fig 3.1 an example of a circular orbit where the central mass is much larger than the orbiting mass (M >> m). In fact this is the starting orbit in the program and simulates the Earth's orbit around the Sun.
+  The parameters for this orbit are given in the simulation below the corresponding input fields: speed of the Earth, distance, and speed of the star (which is effectively 0). We can see that the distance remains constant
+  (i.e. it is a circular orbit) and that the energy of the orbit is constant and negative as it should be for a bound orbit.
+</p>
+<p>
+  In order to calculate the necessary velocity for a circular orbit we need to combine Newton's Law of gravitation (3.1) with the centripetal force equation (3.2) to form an equation for the circular velocity (3.3).
+</p>
+
+<p>
+  (3.1) &nbsp;&nbsp;&nbsp;&nbsp; F = GMm/r<sup>2</sup>
+</p>
+<p>
+  (3.2) &nbsp;&nbsp;&nbsp;&nbsp; F = mv<sup>2</sup>/r
+</p>
+<p>
+  (3.3) &nbsp;&nbsp;&nbsp;&nbsp; v<sup>2</sup> = GM/r
+</p>
+
+<p>
+  <b>TASK 1</b>: Derive Equation 3.3 from the two previous equations. What mass does the small m represent and what is the significance of it
+  not being in equation 3.3?
+</p>
+
+<p>
+  <b>TASK 2</b>: Calculate the circular orbital speed of the Earth around the Sun in AU/s and check that you get the same value that is given in the
+  simulation (1.99 x 10<sup>-7</sup> AU/s). Remember, it will be easiest to work in the units given above for G.
+</p>
+
+<p>
+  <b>TASK 3</b>: Calculate the necessary circular orbit velocity for an Earth mass planet orbiting around a star with three times the mass of the Sun at a distance
+  of 2 AU. Input the distance, mass and orbital speed to check that you get a circular orbit.
+</p>
+
+<p>
+  If you don't input any velocity, the simulation will calculate the circular velocity by default and display it underneath the input field.
+</p>
+<p>
+  The total energy of a circular orbit is given by equation 3.4:
+</p>
+
+<p>
+  (3.4) &nbsp;&nbsp;&nbsp;&nbsp; E = -GMm/2r
+</p>
+
+<p>
+  <b>OPTIONAL TASK</b>: Try deriving the above equation from the equations for the KE of the planet (we assume the KE of the star is 0) and the gravitational
+  potential energy of the system.
+</p>
+
+<p>
+  <b>TASK 4</b>: Use equation 3.4 to calculate the energy of the orbit in TASK 3 and compare this to the energy given in the simulation. Remember the units that
+  we are working in.
+</p>
+
+<p>
+  <b>TASK 5</b>: Try changing the orbital velocity of the planet slightly. How does this affect the orbital path of the planet? What shape is it now? What happens to
+  the orbital velocity throughout the orbit: where is it fastest and slowest? Why?
+</p>
+
+<h3> A brief extension on circular orbits: M ~ m </h3>
+
+<p>
+  Many stars can be found in binary orbits: two stars orbiting each other. In this case the condition M >> m is not met and the above equations do not hold in exactly the same form.
+  If you do want to simulate binary stars then we can calculate the corresponding orbital velocities as follows.
+</p>
+
+<p>
+  Equation 3.3 can be used in the same form, except the quantities mean slightly different things. In this case the M quantity is given by equation 3.5 below; the speed v is given
+  by equation 3.6 and is the sum of the two speeds; and a new quantity &mu;, the reduced mass, is useful and given by equation 3.7. In order to find the individual velocities of our masses
+  we also need to use equation 3.8.
+</p>
+
+<p>
+  (3.5) &nbsp;&nbsp;&nbsp;&nbsp; M =  m<sub>1</sub> + m<sub>2</sub>
+</p>
+<p>
+  (3.6) &nbsp;&nbsp;&nbsp;&nbsp; v = v<sub>1</sub> + v<sub>2</sub>
+</p>
+<p>
+  (3.7) &nbsp;&nbsp;&nbsp;&nbsp; &mu; = m<sub>1</sub>.m<sub>2</sub> / (m<sub>1</sub> + m<sub>2</sub>)
+</p>
+<p>
+  (3.8) &nbsp;&nbsp;&nbsp;&nbsp; m<sub>1</sub>.v<sub>1</sub> = m<sub>2</sub>.v<sub>2</sub> = &mu;.v
+</p>
+
+<h3> A worked example </h3>
+
+<p>
+  <b>TASK 6</b>: Consider two stars orbiting each other with circular orbits, m<sub>1</sub> = 1 solar mass and m<sub>2</sub> = 5 solar masses at a distance of 4AU from each other. Try to calculate the individual
+  velocities for each of the stars. Input all the information into the Orbits simulation and if you are correct your should find that you get a circular binary system.
+</p>
+
+<p>
+ <b> Solution:</b> The relative speed v is found as follows:
+</p>
+<p>
+  v<sup>2</sup> = GM/r = 3.964 x 10<sup>-14</sup>.(5 + 1) / 4
+</p>
+<p>
+  v = 2.44 x 10<sup>-7</sup> AU/s
+</p>
+<p>
+  The reduced mass in this situation is: &mu; =  m<sub>1</sub>.m<sub>2</sub> / (m<sub>1</sub> + m<sub>2</sub>) = 1x5 / (1+5) = 5/6
+</p>
+<p>
+  Using equation 3.8 we can find the individual velocities as follows:
+</p>
+<p>
+  v<sub>1</sub> = &mu;.v/m<sub>1</sub> = (5/6).(2.44 x 10<sup>-7</sup>) / 1 = 2.03 x 10<sup>-7</sup> AU/s
+</p>
+<p>
+  v<sub>2</sub> = &mu;.v/m<sub>2</sub> = (5/6).(2.44 x 10<sup>-7</sup>) / 5 = 4.07 x 10<sup>-8</sup> AU/s
+</p>
+
+<p>
+  One important thing to remember is that these two stars have different signs to their velocities (as one moves up the other moves down etc). Therefore, when we input the velocity you must remember to
+  <b>make one of the velocities negative</b>.
+</p>
+
 </div>
 
 
