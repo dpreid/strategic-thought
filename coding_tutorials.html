@@ -1,0 +1,196 @@
+<!--Coding tutorials page-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Tutorials</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <script src="scripts.js"></script>
+  </head>
+
+  <body>
+    <!--TOP MENU BAR with separate page links-->
+    <div class="mainpage">
+    <div id="topmenubar">
+        <a href="javascript:void(0)" class="topbarbutton" onclick="openNav()">MENU</a>
+        <a href="index.html" class="topbarbutton">HOME</a>
+        <a href="gamesmain.html" class="topbarbutton">GAMES</a>
+        <a href="codingmain.html" class="topbarbuttonselected">CODING</a>
+        <a href="physicsmain.html" class="topbarbutton">PHYSICS</a>
+        <a href="astronomymain.html" class="topbarbutton">ASTRONOMY</a>
+    </div>
+
+    <!-- Page header with title of page-->
+    <div id="pagehead" class="pagetitle">
+      <h1> Coding Tutorials</h1>
+    </div>
+
+
+    </div>
+    <!-- Side bar for page navigation-->
+    <div id="mysidemenu" class="sidemenu">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="index.html">HOME</a>
+
+
+
+    </div>
+
+
+    <!-- Main page content -->
+    <div id="mainpage">
+
+      <!--Tutorial 1: Vectors in Unity and C# -->
+      <h2 id="codingTutorial1"> Tutorial 1: Using vectors in Unity and C#</h2>
+
+<p>
+  Understanding the application of vectors is at the heart of many areas of Physics: particularly in Mechanics. Understanding the motion
+  of bodies relies on understanding the forces that act on them and that force and the corresponding acceleration, velocity and displacement
+  are all vector quantities. When attempting to create graphical simulations of physical systems it is also vital to have a grasp of vectors
+  for correctly implementing graphical user interfaces and changing the position of graphical elements on the screen. Therefore, this tutorial
+  will focus on how vectors can be implemented in Unity and C# to code basic physics elements of the "Physics Labs" simulations.
+</p>
+
+  <h3>The Vector3 class</h3>
+<p>
+  Rather than construct our vectors from scratch using float arrays or some other data structure, we can use the UnityEngine Vector3 structure instead.
+  This is particularly useful due to the methods that already exist for this class, including: dot and cross products, rotating the vector, normalizing and
+  finding the angle between vectors.
+</p>
+<p>
+  One very important use of vectors is in the positioning and orientation of GameObjects in Unity. All GameObjects (with a transform component) have a local
+  x, y and z axis that rotates relative to the global x, y and z coordinates. In Unity, the x axis is red, the y axis is green and the z axis is blue.
+  Examples of accessing and manipulating this transform component will be given later.
+</p>
+
+<figure>
+  <img src="images/physics/projectileExitPoint.PNG" alt="exitPoint">
+  <figcaption> Fig 1.1: Projectile exit point GameObject showing its x and y (red and green respectively) as would be seen in the
+    Unity editor. Taken from Mechanics Lab > Projectile scene.</figcaption>
+</figure>
+
+<p>
+  The documentation for the Vector3 class can be found at <a href="https://docs.unity3d.com/ScriptReference/Vector3.html"> Unity: Vector3</a>.
+</p>
+<p>
+  The constructor for the Vector3 class is relatively straightforward, we simply need to assign the x, y and z components of our vector. The Vector3 class
+  also has a lot of inbuilt methods: both for shorthand assignment of common vectors and vector algebra. The code below gives an example of the basic constructor
+  and of a few examples of the inbuilt methods.
+</p>
+<code>
+  Vector3 vector_1 = Vector3(1,1,1); &nbsp;&nbsp;&nbsp;&nbsp; //the identity vector<br>
+  Vector3 vector_2 = Vector3.one; &nbsp;&nbsp;&nbsp;&nbsp; //shorthand way of creating the identity vector<br>
+  Vector3 vector_3 = Vector3.right; &nbsp;&nbsp;&nbsp;&nbsp; //shorthand for (1,0,0) the red axis for your component in Unity<br>
+  Vector3 vector_4 = Vector3.up; &nbsp;&nbsp;&nbsp;&nbsp; //shorthand for (0,1,0) the green axis<br>
+  Vector3 vector_5 = Vector3.forward; &nbsp;&nbsp;&nbsp;&nbsp; //shorthand for (0,0,1) the blue axis<br>
+  Vector3 vector_6 = Vector3.Angle(Vector3 a, Vector3 b); &nbsp;&nbsp;&nbsp;&nbsp; //returns the angle between vectors a and b<br>
+  Vector3 vector_7 = Vector3.SignedAngle(Vector3 a, Vector3 b, Vector3 axis); &nbsp;&nbsp;&nbsp;&nbsp; //returns the signed angle between vectors a and b around the specified axis<br>
+  Vector3 vector_8 = Vector3.Distance(Vector3 a, Vector3 b); &nbsp;&nbsp;&nbsp;&nbsp; //returns the distance between vectors a and b<br>
+  Vector3 vector_9 = Vector3.Reflect(Vector3 original, Vector3 normal); &nbsp;&nbsp;&nbsp;&nbsp; //returns the original vector reflected of a surface defined by the normal vector<br>
+</code>
+<p>
+  Basic vector arithmetic can be performed on Vector3 objects by using the same notation as with normal scalar arithmetic:
+</p>
+<code>
+  Vector3 a = new Vector3(1,1,1);<br>
+  Vector b = new Vector(2,2,2);<br>
+  Vector c = a + b; &nbsp;&nbsp;&nbsp;&nbsp; // vector addition<br>
+  Vector d = 2*a; &nbsp;&nbsp;&nbsp;&nbsp; // multiplying by a scalar.<br>
+</code>
+
+<h3>Electric field example</h3>
+<p>
+  As I hope that these tutorials could help in development of your own simulations, I will use examples from the code I use in the
+  "labs" apps. During this tutorial I will mainly refer to the electromagnetic simulations from (the soon to be released) Fields Lab.
+</p>
+Coulomb's Law gives us the electric field at a displacement <b>r</b> from a point charge.
+<p>
+(1.1) &nbsp;&nbsp;&nbsp;&nbsp; <b>E</b> = (1/4&pi;&epsilon;<sub>0</sub>)Q/|r<sup>2</sup>|.<i>r</i>
+</p>
+<p>
+  Where <b>bold</b> denotes a vector and <i>italic</i> a unit vector.
+</p>
+<p>
+  The unit vector <i>r</i> can be expressed as:
+</p>
+<p>
+(1.2) &nbsp;&nbsp;&nbsp;&nbsp; <i>r</i> = <b>r</b>/|r|
+</p>
+<p>
+  Where the |r| is the magnitude of <b>r</b>, simply the distance from the point charge to the position in question.
+  This means that we can re-express the electric field as:
+</p>
+<p>
+  (1.3) &nbsp;&nbsp;&nbsp;&nbsp; <b>E</b> = (1/4&pi;&epsilon;<sub>0</sub>)Q/|r<sup>3</sup>|.<b>r</b>
+</p>
+<p>
+  Positions are stored as Vector3 structures themselves, therefore in order to find the vector <b>r</b> we need to do some vector
+  addition. The point charge is a GameObject in Unity (a sphere) with a Transform component attached to it which stores the position
+  and scale of the object. To access the position of the point charge we can use the following code:
+</p>
+        <code>
+          public GameObject charge;     //the charge object can then be assigned to this variable in the Unity editor<br>
+          ...                           //Start() and Update() methods<br>
+          ...<br>
+<br>
+          <b>Vector3 charge_position = charge.transform.position;</b><br>
+<br>
+      </code>
+<p>
+    It may be that you want to calculate the electric field at a position when you click, or at some other GameObject, but for this
+    example we will assign a vector position at which we will calculate the field strength called p:
+</p>
+        <code>
+          Vector3 p = new Vector3(5,6,7);   //this is how we assign vectors -> (x,y,z)
+      </code>
+
+<p>
+  Our vector <b>r</b>, which is the displacement from the charge to the position p, is then found by:
+</p>
+<p>
+  <code>
+    private Vector3 CalculateElectricField(Vector3 charge_position, Vector3 p, float charge){ <br>
+        <b>Vector3 r = p - charge_position;</b><br>
+        float r_mag = r.magnitude;<br>
+        Vector3 E_field = (coulomb_constant * charge / (r_mag * r_mag * r_mag))*r;       //electric field vector<br>
+        return E_field;<br>
+</code>
+</p>
+<p>
+  This line of code is inside the method for calculating the electric field, the remainder of which is the code version of
+  equation (1.3) and includes a coulomb_constant float value that would be assigned in the Start() method.
+</p>
+<p>
+  In order to get the unit vector <i>r</i> we could also use the normalize method for Vector3 structures:
+</p>
+        <code>
+          Vector3 r_unit = r.normalized;
+      </code>
+<p>
+    The electric field visualisation simulation in Fields Lab requires that the small vector arrows align themselves along the electric field
+    vector lines. The use of vectors allows us to easily rotate objects. The method used in Fields Lab is shown below:
+</p>
+<code>
+  float angle = Vector3.SignedAngle(transform.right, E_field_total, Vector3.forward); &nbsp;&nbsp;&nbsp;&nbsp;<br>
+  transform.Rotate(transform.forward, angle);
+</code>
+<p>
+  The first line of code finds the angle in degrees between the x axis of the object that we want to rotate and the electric field vector.
+  The x axis of the object that we are rotating is found using the shorthand "transform.right" where transform in Unity is always the Transform
+  component of whatever object the script is attached to. The SignedAngle is given a positive or negative value depending on whether it has to
+  rotate clockwise or anti-clockwise to rotate from the first to the second vector around the defined axis: in this case the z component (Vector3.forward).
+  The second line of code then actually rotates the object the angle calculated in the first line around the local z axis (transform.forward). Running this
+  code in the Update() method (or more usually the FixedUpdate() method for Physics simulations that are dependent on consistent time delays between calculations)
+  means that the object will always face along the electric field vector.
+</p>
+<p>
+  The C# scripts used in all the "labs" are available on <a href="https://github.com/dpreid/">GitHub</a>. Feel free to download and modify and use them in your own projects if they are in anyway useful
+  to you: a brief mention of this site would be appreciated and maybe a small donation if I have got that up and running yet. Please also leave a comment as I would be
+  very interested in knowing that it is being useful for others.
+
+</p>
+
+  </body>
+</html>
