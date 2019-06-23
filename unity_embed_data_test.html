@@ -1,24 +1,25 @@
 <html>
 <head>
-  <script>
 
-  function AddClick() {
-      console.log('val = ' + document.getElementById('click_field').value);
-      var current_val = document.getElementById('click_field').value;
-      document.getElementById('click_field').value = Number(current_val) + 1;
-
-  }
-  </script>
   </head>
-
+<body>
 
 <input type='text' id='click_field' value=0>
 
 <input type='submit' onclick="AddClick()" value='Click'>
 
 
+<script>
 
+function AddClick() {
+    console.log('val = ' + document.getElementById('click_field').value);
+    var current_val = document.getElementById('click_field').value;
+    document.getElementById('click_field').value = Number(current_val) + 1;
 
+}
+</script>
+
+</body>
 
 
 </html>
