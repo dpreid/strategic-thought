@@ -1,0 +1,29 @@
+<html>
+<head>
+<script src=unity_test_javascript_functions.js></script>
+</head>
+
+<body>
+<!--Test button and text input for testing communication between WebGL and other Javascript/HTML elements-->
+<div id='clickDiv'>
+<input type='text' id='click_field' value=0>
+<input type='submit' onclick="AddClick()" value='Click'>
+</div>
+
+<!-- Input form for submitting results to database-->
+<form action='/submitResult' method='post'>
+<div id='inputDiv'>
+<br>Input Username:
+<input type='text' name='username' id='username'>
+<br>Input speed:
+<input type='text' name='speedInput' id='speedInput'>
+<input type='submit' value='Submit Results'>
+
+</form>
+
+
+
+</body>
+
+
+</html>
