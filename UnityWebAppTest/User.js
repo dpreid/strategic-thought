@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 
 
-mongoose.connect('mongodb+srv://dpreid:david@cluster0-shwwy.azure.mongodb.net/test?retryWrites=true&w=majority');
+//mongoose.connect('mongodb+srv://dpreid:david@cluster0-shwwy.azure.mongodb.net/test');
+mongoose.connect('mongodb+srv://dpreid:david@cluster0-shwwy.azure.mongodb.net/', {dbName: 'unityTest'});
 //mongoose.connect('mongodb://localhost:27017/UnityTestDatabase');
 
 var Schema = mongoose.Schema;
